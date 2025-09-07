@@ -1,10 +1,9 @@
 package co.edu.ucompensar.model.movie;
 import co.edu.ucompensar.model.movie.entity.Genre;
+import co.edu.ucompensar.model.movie.entity.SpokenLanguage;
 import lombok.Builder;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 //import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Objects;
 import java.util.Set;
@@ -14,11 +13,13 @@ public class Movie {
     private Long id;
     private String title;
     private Set<Genre> genres;
+    private Set<SpokenLanguage> spokenLanguages;
 
     @Builder(toBuilder = true)
-    public Movie(Long id, String title, Set<Genre> genres) {
+    public Movie(Long id, String title, Set<Genre> genres, Set<SpokenLanguage> spokenLanguages) {
         this.id = id;
         this.title = Objects.requireNonNull(title);
         this.genres = genres;
+        this.spokenLanguages = spokenLanguages;
     }
 }
