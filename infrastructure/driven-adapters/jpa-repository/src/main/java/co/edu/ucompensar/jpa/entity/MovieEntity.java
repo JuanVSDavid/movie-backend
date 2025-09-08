@@ -28,4 +28,12 @@ public class MovieEntity {
             inverseJoinColumns = @JoinColumn(name = "language_iso")
     )
     private Set<SpokenLanguageEntity> spokenLanguages = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_origin_countries",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_code")
+    )
+    private Set<OriginCountryEntity> originCountries = new HashSet<>();
 }
