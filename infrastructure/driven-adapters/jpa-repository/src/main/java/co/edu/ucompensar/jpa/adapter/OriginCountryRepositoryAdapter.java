@@ -2,7 +2,8 @@ package co.edu.ucompensar.jpa.adapter;
 
 import co.edu.ucompensar.jpa.entity.OriginCountryEntity;
 import co.edu.ucompensar.jpa.mapper.MovieDomainEntityMapper;
-import co.edu.ucompensar.model.movie.OriginCountry;
+import co.edu.ucompensar.jpa.repository.OriginCountryDataRepository;
+import co.edu.ucompensar.model.movie.entity.OriginCountry;
 import co.edu.ucompensar.model.movie.gateways.OriginCountryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
