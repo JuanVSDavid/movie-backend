@@ -7,6 +7,10 @@ import co.edu.ucompensar.usecase.createmovie.command.CreateMovieCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/api/movie", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,6 +29,18 @@ public class ApiRest {
     public MovieResponse create(@RequestBody CreateMovieCommand request){
         var movie = createMovieUseCase.create(request);
         return movieResponseMapper.toResponse(movie);
+    }
+
+    @GetMapping
+    public Page<Movie> getAllMovies(Pageable pageable) {
+        return createMovieUseCase.listMovies(pageable);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        return createMovieUseCase.getMovieById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

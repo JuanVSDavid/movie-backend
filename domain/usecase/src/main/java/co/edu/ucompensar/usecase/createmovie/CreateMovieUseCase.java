@@ -5,9 +5,15 @@ import co.edu.ucompensar.model.movie.entity.Genre;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
 import co.edu.ucompensar.usecase.createmovie.command.CreateMovieCommand;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 import java.util.stream.Collectors;
 
+@Service
 @RequiredArgsConstructor
 public class CreateMovieUseCase {
     private final MovieRepository movieRepository;
@@ -20,4 +26,13 @@ public class CreateMovieUseCase {
                 .build();
         return movieRepository.create(movie);
     }
+
+    public Page<Movie> listMovies(Pageable pageable) {
+        return movieRepository.findAll(pageable);
+    }
+
+    public Optional<Movie> getMovieById(Long id) {
+        return movieRepository.findById(id);
+    }
+
 }
