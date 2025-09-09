@@ -1,20 +1,39 @@
 package co.edu.ucompensar.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "movies")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Entity
 public class MovieEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-//    @Column(name = "poster_path")
-//    private String posterPath;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_spoken_languages",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_iso")
+    )
+    private Set<SpokenLanguageEntity> spokenLanguages = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_origin_countries",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_code")
+    )
+    private Set<OriginCountryEntity> originCountries = new HashSet<>();
 }

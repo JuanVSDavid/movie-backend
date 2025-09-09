@@ -7,8 +7,11 @@ import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -34,7 +37,14 @@ public class MovieAdapter implements MovieRepository {
     }
 
     @Override
-    public List<Movie> getUpcoming() {
-        return List.of();
+    public Page<Movie> findAll(Pageable pageable) {
+        return movieEntityRepository.findAll(pageable)
+                .map(movieMapper::toDomain);
+    }
+
+    @Override
+    public Optional<Movie> findById(Long id) {
+        return movieEntityRepository.findById(id)
+                .map(movieMapper::toDomain);
     }
 }
