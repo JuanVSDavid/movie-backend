@@ -36,11 +36,11 @@ public class MovieAdapter implements MovieRepository {
         return null;
     }
 
-    @Override
-    public Page<Movie> findAll(Pageable pageable) {
-        return movieEntityRepository.findAll(pageable)
-                .map(movieMapper::toDomain);
-    }
+//    @Override
+//    public Page<Movie> findAll(Pageable pageable) {
+//        return movieEntityRepository.findAll(pageable)
+//                .map(movieMapper::toDomain);
+//    }
 
     @Override
     public Optional<Movie> findById(Long id) {

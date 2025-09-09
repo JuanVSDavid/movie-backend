@@ -7,8 +7,6 @@ import co.edu.ucompensar.usecase.createmovie.command.CreateMovieCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +29,12 @@ public class ApiRest {
         return movieResponseMapper.toResponse(movie);
     }
 
-    @GetMapping
-    public Page<Movie> getAllMovies(Pageable pageable) {
-        return createMovieUseCase.listMovies(pageable);
-    }
+
+
+//    @GetMapping
+//    public Page<Movie> getAllMovies(Pageable pageable) {
+//        return createMovieUseCase.listMovies(pageable);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
