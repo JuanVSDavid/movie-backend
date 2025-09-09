@@ -14,8 +14,4 @@ import org.springframework.context.annotation.FilterType;
         },
         useDefaultFilters = false)
 public class UseCasesConfig {
-    @Bean
-    public SpokenLanguageUseCase spokenLanguageUseCase(SpokenLanguageRepository repository) {
-        return new SpokenLanguageUseCase(repository);
-    }
 }

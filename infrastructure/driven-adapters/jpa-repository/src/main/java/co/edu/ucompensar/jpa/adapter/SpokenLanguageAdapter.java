@@ -1,4 +1,5 @@
 package co.edu.ucompensar.jpa.adapter;
+import co.edu.ucompensar.jpa.common.DomainEntityMapper;
 import co.edu.ucompensar.jpa.entity.SpokenLanguageEntity;
 import co.edu.ucompensar.jpa.mapper.SpokenLanguageDomainEntityMapper;
 import co.edu.ucompensar.jpa.repository.SpokenLanguageEntityRepository;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class SpokenLanguageAdapter implements SpokenLanguageRepository {
 
     private final SpokenLanguageEntityRepository repository;
-    private final SpokenLanguageDomainEntityMapper mapper;
+    private final DomainEntityMapper<SpokenLanguage, SpokenLanguageEntity> mapper;
 
     @Override
     public List<SpokenLanguage> findAll() {

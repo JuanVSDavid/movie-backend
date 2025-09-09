@@ -1,11 +1,12 @@
 package co.edu.ucompensar.jpa.mapper;
 
+import co.edu.ucompensar.jpa.common.DomainEntityMapper;
 import co.edu.ucompensar.jpa.entity.SpokenLanguageEntity;
 import co.edu.ucompensar.model.movie.entity.SpokenLanguage;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpokenLanguageDomainEntityMapper {
+public class SpokenLanguageDomainEntityMapper implements DomainEntityMapper<SpokenLanguage, SpokenLanguageEntity> {
 
     public SpokenLanguage toDomain(SpokenLanguageEntity entity) {
         if (entity == null) return null;
