@@ -11,6 +11,9 @@ public interface MovieRepository {
     Movie create(Movie movie);
     Movie modify(Movie movie);
     Movie delete(Movie movie);
-//    Object findAll(Pageable pageable);
     Optional<Movie> findById(Long id);
+    Page<Movie> findNowPlaying(Pageable pageable);
+    Page<Movie> findTopRated(Pageable pageable);
+    Page<Movie> findUpcoming(Pageable pageable);
+    Page<Movie> findPopular(Pageable pageable);
 }

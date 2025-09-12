@@ -6,4 +6,6 @@ public class MovieResponse {
     private Long id;
     private String title;
     private Set<Long> genresId;
+    private Set<Long> spokenLanguagesId;
+    private Set<Long> originCountriesId;
 }

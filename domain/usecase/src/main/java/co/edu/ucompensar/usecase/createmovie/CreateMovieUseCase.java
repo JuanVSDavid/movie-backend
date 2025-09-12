@@ -1,5 +1,7 @@
 package co.edu.ucompensar.usecase.createmovie;
 
+import co.edu.ucompensar.model.common.Page;
+import co.edu.ucompensar.model.common.Pageable;
 import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.model.movie.entity.Genre;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
@@ -23,9 +25,21 @@ public class CreateMovieUseCase {
         return movieRepository.create(movie);
     }
 
-//    public Page<Movie> listMovies(Pageable pageable) {
-//        return movieRepository.findAll(Object);
-//    }
+    public Page<Movie> getNowPlaying(Pageable pageable) {
+        return movieRepository.findNowPlaying(pageable);
+    }
+
+    public Page<Movie> getTopRated(Pageable pageable) {
+        return movieRepository.findTopRated(pageable);
+    }
+
+    public Page<Movie> getUpcoming(Pageable pageable) {
+        return movieRepository.findUpcoming(pageable);
+    }
+
+    public Page<Movie> getPopular(Pageable pageable) {
+        return movieRepository.findPopular(pageable);
+    }
 
     public Optional<Movie> getMovieById(Long id) {
         return movieRepository.findById(id);

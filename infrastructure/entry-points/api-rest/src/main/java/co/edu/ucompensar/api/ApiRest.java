@@ -1,6 +1,8 @@
 package co.edu.ucompensar.api;
 import co.edu.ucompensar.api.common.ResponseMapper;
 import co.edu.ucompensar.api.model.response.MovieResponse;
+import co.edu.ucompensar.model.common.Page;
+import co.edu.ucompensar.model.common.Pageable;
 import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.usecase.createmovie.CreateMovieUseCase;
 import co.edu.ucompensar.usecase.createmovie.command.CreateMovieCommand;
@@ -30,11 +32,6 @@ public class ApiRest {
     }
 
 
-
-//    @GetMapping
-//    public Page<Movie> getAllMovies(Pageable pageable) {
-//        return createMovieUseCase.listMovies(pageable);
-//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
