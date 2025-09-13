@@ -1,4 +1,4 @@
-package co.edu.ucompensar.usecase.createmovie.command;
+package co.edu.ucompensar.usecase.movie.command;
 
 import java.util.Set;
 

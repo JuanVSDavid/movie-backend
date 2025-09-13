@@ -1,11 +1,11 @@
-package co.edu.ucompensar.usecase.createmovie;
+package co.edu.ucompensar.usecase.movie;
 
 import co.edu.ucompensar.model.common.Page;
 import co.edu.ucompensar.model.common.Pageable;
 import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.model.movie.entity.Genre;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
-import co.edu.ucompensar.usecase.createmovie.command.CreateMovieCommand;
+import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class CreateMovieUseCase {
+public class MovieUseCase {
     private final MovieRepository movieRepository;
 
     public Movie create(CreateMovieCommand command){
