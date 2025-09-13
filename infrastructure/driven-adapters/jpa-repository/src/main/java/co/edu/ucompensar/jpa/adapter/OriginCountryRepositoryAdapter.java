@@ -2,8 +2,7 @@ package co.edu.ucompensar.jpa.adapter;
 
 import co.edu.ucompensar.jpa.common.DomainEntityMapper;
 import co.edu.ucompensar.jpa.entity.OriginCountryEntity;
-import co.edu.ucompensar.jpa.mapper.MovieDomainEntityMapper;
-import co.edu.ucompensar.jpa.repository.OriginCountryDataRepository;
+import co.edu.ucompensar.jpa.repository.OriginCountryEntityRepository;
 import co.edu.ucompensar.model.movie.entity.OriginCountry;
 import co.edu.ucompensar.model.movie.gateways.OriginCountryRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OriginCountryRepositoryAdapter implements OriginCountryRepository {
     private final DomainEntityMapper<OriginCountry, OriginCountryEntity> mapper;
-    private final OriginCountryDataRepository repository;
+    private final OriginCountryEntityRepository repository;
 
     @Override
     public List<OriginCountry> findAll() {
