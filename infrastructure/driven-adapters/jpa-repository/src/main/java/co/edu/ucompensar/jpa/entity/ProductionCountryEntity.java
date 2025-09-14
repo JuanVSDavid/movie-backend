@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "production_countries")
-public class ProductionCountryData {
+public class ProductionCountryEntity {
 
     @Id
     @Column(name = "iso_3166_1")

@@ -1,7 +1,7 @@
 package co.edu.ucompensar.jpa.mapper;
 
 import co.edu.ucompensar.jpa.common.DomainEntityMapper;
-import co.edu.ucompensar.jpa.entity.ProductionCountryData; // Asegúrate de haberla renombrado a 'Data'
+import co.edu.ucompensar.jpa.entity.ProductionCountryEntity; // Asegúrate de haberla renombrado a 'Data'
 import co.edu.ucompensar.model.movie.entity.ProductionCountry;
 import org.springframework.stereotype.Component;
 
@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component // Para que Spring pueda inyectarlo
-public class ProductionCountryDomainEntityMapper implements DomainEntityMapper<ProductionCountry, ProductionCountryData> {
+public class ProductionCountryDomainEntityMapper implements DomainEntityMapper<ProductionCountry, ProductionCountryEntity> {
 
     @Override
-    public ProductionCountryData toEntity(ProductionCountry domain) {
+    public ProductionCountryEntity toEntity(ProductionCountry domain) {
         if (domain == null) return null;
 
-        ProductionCountryData entity = new ProductionCountryData();
+        ProductionCountryEntity entity = new ProductionCountryEntity();
         entity.setIso31661(domain.getIso31661());
         entity.setName(domain.getName());
         return entity;
     }
 
     @Override
-    public ProductionCountry toDomain(ProductionCountryData entity) {
+    public ProductionCountry toDomain(ProductionCountryEntity entity) {
         if (entity == null) return null;
 
         return ProductionCountry.builder()
@@ -32,7 +32,7 @@ public class ProductionCountryDomainEntityMapper implements DomainEntityMapper<P
     }
 
     // Métodos de ayuda para listas
-    public List<ProductionCountry> toDomainList(List<ProductionCountryData> entityList) {
+    public List<ProductionCountry> toDomainList(List<ProductionCountryEntity> entityList) {
         return entityList.stream()
                 .map(this::toDomain)
                 .collect(Collectors.toList());

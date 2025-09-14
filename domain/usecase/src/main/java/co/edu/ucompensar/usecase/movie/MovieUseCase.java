@@ -2,27 +2,30 @@ package co.edu.ucompensar.usecase.movie;
 
 import co.edu.ucompensar.model.common.Page;
 import co.edu.ucompensar.model.common.Pageable;
-import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.model.movie.entity.Genre;
+import co.edu.ucompensar.model.movie.entity.Movie;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
 import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Optional;
 
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class MovieUseCase {
+
     private final MovieRepository movieRepository;
 
-    public Movie create(CreateMovieCommand command){
-        var movie = Movie
-                .builder()
+    public Movie create(CreateMovieCommand command) {
+        var genres = command.getGenresId().stream()
+                .map(id -> Genre.builder().id(id).build())
+                .collect(Collectors.toSet());
+
+        var movieToCreate = Movie.builder()
                 .title(command.getTitle())
-                .genres(command.getGenresId().stream().map(id -> Genre.builder().id(id).build()).collect(Collectors.toSet()))
+                .genres(genres)
                 .build();
-        return movieRepository.create(movie);
+
+        return movieRepository.create(movieToCreate);
     }
 
     public Page<Movie> getNowPlaying(Pageable pageable) {
@@ -41,8 +44,8 @@ public class MovieUseCase {
         return movieRepository.findPopular(pageable);
     }
 
-    public Optional<Movie> getMovieById(Long id) {
-        return movieRepository.findById(id);
+    public void delete(Long id) {
+        movieRepository.deleteById(id);
     }
 
 }
