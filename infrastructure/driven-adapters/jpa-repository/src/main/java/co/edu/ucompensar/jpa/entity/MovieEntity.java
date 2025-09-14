@@ -3,6 +3,8 @@ package co.edu.ucompensar.jpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,8 +20,14 @@ public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column
     private String title;
+    @Column
+    private LocalDateTime releaseDate;
+    @Column
+    private BigDecimal voteAverage;
+    @Column
+    private BigDecimal popularity;
 
     @ManyToMany
     @JoinTable(
