@@ -8,12 +8,17 @@ import co.edu.ucompensar.model.movie.gateways.MovieRepository;
 import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional; // <-- Necesitarás este import
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class MovieUseCase {
 
     private final MovieRepository movieRepository;
+
+    public Optional<Movie> findById(Long id) {
+        return movieRepository.findById(id);
+    }
 
     public Movie create(CreateMovieCommand command) {
         var genres = command.getGenresId().stream()
@@ -47,5 +52,4 @@ public class MovieUseCase {
     public void delete(Long id) {
         movieRepository.deleteById(id);
     }
-
 }

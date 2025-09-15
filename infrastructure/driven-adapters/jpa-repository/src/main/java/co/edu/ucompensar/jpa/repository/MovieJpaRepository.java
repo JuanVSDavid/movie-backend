@@ -1,5 +1,6 @@
 package co.edu.ucompensar.jpa.repository;
 
+import co.edu.ucompensar.jpa.entity.MovieEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,14 +11,14 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 
 @Repository
-public interface MovieJpaRepository extends JpaRepository<MovieData, Long> {
+public interface MovieJpaRepository extends JpaRepository<MovieEntity, Long> {
 
-    @Query("SELECT m FROM MovieData m WHERE m.status = 'Released' AND m.releaseDate BETWEEN :startDate AND :endDate")
-    Page<MovieData> findNowPlaying(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate, Pageable pageable);
-    Page<MovieData> findByOrderByVoteAverageDesc(Pageable pageable);
+    @Query("SELECT m FROM MovieEntity m WHERE m.status = 'Released' AND m.releaseDate BETWEEN :startDate AND :endDate")
+    Page<MovieEntity> findNowPlaying(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate, Pageable pageable);
+    Page<MovieEntity> findByOrderByVoteAverageDesc(Pageable pageable);
 
-    @Query("SELECT m FROM MovieData m WHERE m.releaseDate > :currentDate")
-    Page<MovieData> findUpcoming(@Param("currentDate") LocalDate currentDate, Pageable pageable);
-    Page<MovieData> findByOrderByPopularityDesc(Pageable pageable);
+    @Query("SELECT m FROM MovieEntity m WHERE m.releaseDate > :currentDate")
+    Page<MovieEntity> findUpcoming(@Param("currentDate") LocalDate currentDate, Pageable pageable);
+    Page<MovieEntity> findByOrderByPopularityDesc(Pageable pageable);
 
 }

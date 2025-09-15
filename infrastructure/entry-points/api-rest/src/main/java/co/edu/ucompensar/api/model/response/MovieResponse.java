@@ -13,6 +13,6 @@ public class MovieResponse {
     private Set<Long> genresId;
     private String overview;
     private LocalDate releaseDate;
-    private Set<Long> spokenLanguagesId;
-    private Set<Long> originCountriesId;
+    private Set<String> spokenLanguagesId;
+    private Set<String> originCountriesId;
 }

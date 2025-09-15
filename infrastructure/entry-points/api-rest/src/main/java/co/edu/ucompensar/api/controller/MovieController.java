@@ -1,42 +1,33 @@
 package co.edu.ucompensar.api.controller;
-import co.edu.ucompensar.api.common.ResponseMapper;
+
+import co.edu.ucompensar.api.model.mapper.MovieResponseMapper;
+
 import co.edu.ucompensar.api.model.response.MovieResponse;
-import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.usecase.movie.MovieUseCase;
+
 import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
-import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/movie", produces = MediaType.APPLICATION_JSON_VALUE)
-@AllArgsConstructor
+@RequestMapping("/api/movies")
+@RequiredArgsConstructor
 public class MovieController {
+
     private final MovieUseCase movieUseCase;
-    private final ResponseMapper<Movie, MovieResponse> movieResponseMapper;
+    private final MovieResponseMapper movieResponseMapper;
 
     @PostMapping
-    public MovieResponse create(@RequestBody CreateMovieCommand request){
-        var movie = movieUseCase.create(request);
-        return movieResponseMapper.toResponse(movie);
+    public ResponseEntity<MovieResponse> create(@RequestBody CreateMovieCommand request) {
+        var movieCreated = movieUseCase.create(request);
+        return ResponseEntity.ok(movieResponseMapper.toResponse(movieCreated));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
-        return movieUseCase.getMovieById(id)
-                .map(ResponseEntity::ok)
+    public ResponseEntity<MovieResponse> getMovieById(@PathVariable Long id) {
+        return movieUseCase.findById(id)
+                .map(movie -> ResponseEntity.ok(movieResponseMapper.toResponse(movie)))
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
-        try {
-            movieUseCase.delete(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
 }
