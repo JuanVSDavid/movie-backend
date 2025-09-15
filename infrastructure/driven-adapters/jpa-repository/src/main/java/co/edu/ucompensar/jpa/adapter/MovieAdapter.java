@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -35,12 +34,6 @@ public class MovieAdapter implements MovieRepository {
     public Movie delete(Movie movie) {
         return null;
     }
-
-//    @Override
-//    public Page<Movie> findAll(Pageable pageable) {
-//        return movieEntityRepository.findAll(pageable)
-//                .map(movieMapper::toDomain);
-//    }
 
     @Override
     public Optional<Movie> findById(Long id) {
