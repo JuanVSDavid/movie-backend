@@ -1,21 +1,19 @@
 package co.edu.ucompensar.api.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Set;
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovieResponse {
+public class MoviesResponse {
     private Long id;
     private String title;
     private Boolean adult;

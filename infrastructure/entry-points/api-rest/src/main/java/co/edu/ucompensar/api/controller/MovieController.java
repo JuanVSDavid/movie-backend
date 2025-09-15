@@ -1,6 +1,6 @@
 package co.edu.ucompensar.api.controller;
 import co.edu.ucompensar.api.common.ResponseMapper;
-import co.edu.ucompensar.api.model.response.MovieResponse;
+import co.edu.ucompensar.api.model.response.MoviesResponse;
 import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.usecase.movie.MovieUseCase;
 import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
@@ -14,10 +14,10 @@ import org.springframework.http.ResponseEntity;
 @AllArgsConstructor
 public class MovieController {
     private final MovieUseCase movieUseCase;
-    private final ResponseMapper<Movie, MovieResponse> movieResponseMapper;
+    private final ResponseMapper<Movie, MoviesResponse> movieResponseMapper;
 
     @PostMapping
-    public MovieResponse create(@RequestBody CreateMovieCommand request){
+    public MoviesResponse create(@RequestBody CreateMovieCommand request){
         var movie = movieUseCase.create(request);
         return movieResponseMapper.toResponse(movie);
     }
