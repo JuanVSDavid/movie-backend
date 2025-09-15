@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class Movie {
     private Set<ProductionCompany> productionCompanies;
     private String originalTitle;
     private String overview;
-    private LocalDateTime releaseDate;
+    private LocalDate releaseDate;
     private BigDecimal popularity;
     private String posterPath;
     private String backdropPath;
@@ -49,7 +50,7 @@ public class Movie {
             Set<ProductionCompany> productionCompanies,
             String originalTitle,
             String overview,
-            LocalDateTime releaseDate,
+            LocalDate releaseDate,
             BigDecimal popularity,
             String posterPath,
             String backdropPath,
