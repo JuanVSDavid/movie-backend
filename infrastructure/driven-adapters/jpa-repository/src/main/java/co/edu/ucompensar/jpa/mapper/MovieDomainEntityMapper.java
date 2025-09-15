@@ -26,6 +26,7 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
     public MovieEntity toEntity(Movie movie) {
         return MovieEntity
                 .builder()
+                .id(movie.getId())
                 .title(movie.getTitle())
                 .adult(movie.getAdult())
                 .backdropPath(movie.getBackdropPath())
@@ -56,6 +57,7 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
     public Movie toDomain(MovieEntity movieEntity) {
         return Movie
                 .builder()
+                .id(movieEntity.getId())
                 .title(movieEntity.getTitle())
                 .adult(movieEntity.getAdult())
                 .backdropPath(movieEntity.getBackdropPath())
