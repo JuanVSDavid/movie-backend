@@ -56,7 +56,6 @@ public class MovieEntity {
     private String imdbId;
     @Column
     private String originalLanguage;
-
     @Column
     private BigDecimal voteAverage;
     @Column
@@ -68,6 +67,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<GenreEntity> genres = new HashSet<>();
@@ -78,6 +78,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "company_id")
     )
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<ProductionCompanyEntity> productionCompanies = new HashSet<>();
@@ -88,6 +89,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "country_iso")
     )
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<ProductionCountryEntity> productionCountries = new HashSet<>();
@@ -98,6 +100,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "language_iso")
     )
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<SpokenLanguageEntity> spokenLanguages = new HashSet<>();
@@ -108,6 +111,7 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "country_code")
     )
+    @Builder.Default
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<OriginCountryEntity> originCountries = new HashSet<>();

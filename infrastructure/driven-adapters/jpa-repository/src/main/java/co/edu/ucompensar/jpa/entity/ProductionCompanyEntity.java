@@ -1,6 +1,9 @@
 package co.edu.ucompensar.jpa.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -12,7 +15,6 @@ import lombok.*;
 @Builder
 public class ProductionCompanyEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String name;

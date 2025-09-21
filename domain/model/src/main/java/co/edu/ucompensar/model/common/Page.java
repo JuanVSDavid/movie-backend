@@ -32,4 +32,5 @@ public record Page<T>(
     public boolean isLast() {
         return pageNumber + 1 >= totalPages();
     }
+
 }

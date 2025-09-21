@@ -10,9 +10,10 @@ import java.util.Set;
 public class MovieResponse {
     private Long id;
     private String title;
-    private Set<Long> genresId;
     private String overview;
     private LocalDate releaseDate;
+
+    private Set<Long> genresId;
     private Set<String> spokenLanguagesId;
     private Set<String> originCountriesId;
 }
