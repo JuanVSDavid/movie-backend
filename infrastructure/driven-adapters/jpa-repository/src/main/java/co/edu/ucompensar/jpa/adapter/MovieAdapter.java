@@ -3,10 +3,10 @@ package co.edu.ucompensar.jpa.adapter;
 import co.edu.ucompensar.jpa.entity.MovieEntity;
 import co.edu.ucompensar.jpa.mapper.MovieDomainEntityMapper;
 import co.edu.ucompensar.jpa.repository.MovieEntityRepository;
+import co.edu.ucompensar.model.movie.gateways.MovieRepository;
+import co.edu.ucompensar.model.movie.Movie;
 import co.edu.ucompensar.model.common.Page;
 import co.edu.ucompensar.model.common.Pageable;
-import co.edu.ucompensar.model.movie.entity.Movie;
-import co.edu.ucompensar.model.movie.gateways.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
@@ -37,19 +37,11 @@ public class MovieAdapter implements MovieRepository {
         MovieEntity existingEntity = movieEntityRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + id));
 
-        mapper.updateEntityFromDomain(existingEntity, movie);
+
 
         MovieEntity savedEntity = movieEntityRepository.save(existingEntity);
         return mapper.toDomain(savedEntity);
     }
-
-    /*
-    @Override
-    @Transactional
-    public Movie modify(Long id, Movie movie) {
-        // Lógica para modificar...
-    }
-    */
 
     @Override
     @Transactional

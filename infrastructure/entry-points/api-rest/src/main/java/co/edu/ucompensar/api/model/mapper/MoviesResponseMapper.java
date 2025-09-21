@@ -1,6 +1,5 @@
 package co.edu.ucompensar.api.model.mapper;
 
-
 import co.edu.ucompensar.api.common.ResponseMapper;
 import co.edu.ucompensar.api.model.response.MoviesResponse;
 import co.edu.ucompensar.model.movie.Movie;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class MoviesResponseMapper implements ResponseMapper<Movie, MoviesResponse>{
-
 
     @Override
     public MoviesResponse toResponse(Movie movie) {

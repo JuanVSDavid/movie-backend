@@ -1,10 +1,11 @@
 package co.edu.ucompensar.api.model.mapper;
 
 import co.edu.ucompensar.model.common.Page;
-import co.edu.ucompensar.model.movie.entity.Movie;
 import co.edu.ucompensar.api.model.response.MovieResponse;
 import org.mapstruct.Mapper;
 import java.util.List;
+
+import co.edu.ucompensar.model.movie.Movie;
 
 @Mapper(componentModel = "spring")
 public interface MovieResponseMapper {

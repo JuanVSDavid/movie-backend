@@ -2,7 +2,7 @@ package co.edu.ucompensar.model.movie.gateways;
 
 import co.edu.ucompensar.model.common.Page;
 import co.edu.ucompensar.model.common.Pageable;
-import co.edu.ucompensar.model.movie.entity.Movie;
+import co.edu.ucompensar.model.movie.Movie;
 
 import java.util.Optional;
 
