@@ -37,9 +37,28 @@ public class MovieAdapter implements MovieRepository {
         MovieEntity existingEntity = movieEntityRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + id));
 
-
+        existingEntity.setTitle(movie.getTitle());
+        existingEntity.setOriginalTitle(movie.getOriginalTitle());
+        existingEntity.setOverview(movie.getOverview());
+        existingEntity.setReleaseDate(movie.getReleaseDate());
+        existingEntity.setPosterPath(movie.getPosterPath());
+        existingEntity.setBackdropPath(movie.getBackdropPath());
+        existingEntity.setBudget(movie.getBudget());
+        existingEntity.setRevenue(movie.getRevenue());
+        existingEntity.setRuntime(movie.getRuntime());
+        existingEntity.setStatus(movie.getStatus());
+        existingEntity.setTagline(movie.getTagline());
+        existingEntity.setVoteCount(movie.getVoteCount());
+        existingEntity.setAdult(movie.getAdult());
+        existingEntity.setVideo(movie.getVideo());
+        existingEntity.setHomepage(movie.getHomepage());
+        existingEntity.setImdbId(movie.getImdbId());
+        existingEntity.setOriginalLanguage(movie.getOriginalLanguage());
+        existingEntity.setVoteAverage(movie.getVoteAverage());
+        existingEntity.setPopularity(movie.getPopularity());
 
         MovieEntity savedEntity = movieEntityRepository.save(existingEntity);
+
         return mapper.toDomain(savedEntity);
     }
 
