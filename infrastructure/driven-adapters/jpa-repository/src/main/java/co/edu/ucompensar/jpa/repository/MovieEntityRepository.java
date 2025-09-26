@@ -1,6 +1,6 @@
 package co.edu.ucompensar.jpa.repository;
 
-import co.edu.ucompensar.jpa.entity.MovieEntity; // Asegúrate que la ruta sea correcta
+import co.edu.ucompensar.jpa.entity.MovieEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
