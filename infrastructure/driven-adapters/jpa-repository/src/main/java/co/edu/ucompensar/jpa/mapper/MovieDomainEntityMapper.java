@@ -21,7 +21,7 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
     private final DomainEntityMapper <OriginCountry, OriginCountryEntity> originCountryDomainEntityMapper;
     @Override
     public MovieEntity toEntity(Movie movie) {
-        return MovieEntity.builder().title(movie.getTitle()).spokenLanguages((Set<SpokenLanguageEntity>) spokenLanguageDomainEntityMapper.toEntity(movie.getSpokenLanguages(), HashSet::new)).originCountries((Set<OriginCountryEntity>) originCountryDomainEntityMapper.toEntity(movie.getOriginCountries(), HashSet::new)).build();
+        return MovieEntity.builder().id(movie.getId()).title(movie.getTitle()).spokenLanguages((Set<SpokenLanguageEntity>) spokenLanguageDomainEntityMapper.toEntity(movie.getSpokenLanguages(), HashSet::new)).originCountries((Set<OriginCountryEntity>) originCountryDomainEntityMapper.toEntity(movie.getOriginCountries(), HashSet::new)).build();
     }
 
     public Movie toDomain(MovieEntity movieEntity) {

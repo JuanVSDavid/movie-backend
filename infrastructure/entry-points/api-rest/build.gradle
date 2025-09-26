@@ -13,3 +13,7 @@ dependencies {
 configurations{
 	implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ["-parameters"]
+}
