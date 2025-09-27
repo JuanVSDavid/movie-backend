@@ -1,24 +1,18 @@
 package co.edu.ucompensar.jpa.mapper;
 
 import co.edu.ucompensar.jpa.common.DomainEntityMapper;
-import co.edu.ucompensar.jpa.entity.MovieEntity;
-import co.edu.ucompensar.jpa.entity.OriginCountryEntity;
-import co.edu.ucompensar.jpa.entity.SpokenLanguageEntity;
-import co.edu.ucompensar.model.movie.entity.OriginCountry;
-import co.edu.ucompensar.model.movie.entity.SpokenLanguage;
+import co.edu.ucompensar.jpa.entity.*;
 import co.edu.ucompensar.model.movie.Movie;
-import lombok.RequiredArgsConstructor;
+import co.edu.ucompensar.model.movie.entity.*;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.stream.Collectors;
+import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Component
 public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieEntity> {
-    private final DomainEntityMapper <SpokenLanguage, SpokenLanguageEntity> spokenLanguageDomainEntityMapper;
-    private final DomainEntityMapper <OriginCountry, OriginCountryEntity> originCountryDomainEntityMapper;
+
     @Override
     public MovieEntity toEntity(Movie movie) {
         if (movie == null) {
@@ -54,6 +48,7 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
                 .build();
     }
 
+    @Override
     public Movie toDomain(MovieEntity entity) {
         if (entity == null) {
             return null;
@@ -80,7 +75,7 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
                 .originalLanguage(entity.getOriginalLanguage())
                 .voteAverage(entity.getVoteAverage())
                 .popularity(entity.getPopularity())
-                
+
                 .genres(mapGenresToDomain(entity.getGenres()))
                 .productionCompanies(mapCompaniesToDomain(entity.getProductionCompanies()))
                 .productionCountries(mapProdCountriesToDomain(entity.getProductionCountries()))
@@ -89,9 +84,10 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
                 .build();
     }
 
+    // Métodos
     private Set<GenreEntity> mapGenresToEntity(Set<Genre> genres) {
         if (genres == null) return Collections.emptySet();
-        return genres.stream().map(g -> GenreEntity.builder().id(g.getId()).name(g.getName()).build()).collect(Collectors.toSet());
+        return genres.stream().map(g -> new GenreEntity(g.getId(), g.getName())).collect(Collectors.toSet());
     }
     private Set<Genre> mapGenresToDomain(Set<GenreEntity> entities) {
         if (entities == null) return Collections.emptySet();
@@ -100,38 +96,43 @@ public class MovieDomainEntityMapper implements DomainEntityMapper<Movie, MovieE
 
     private Set<ProductionCompanyEntity> mapCompaniesToEntity(Set<ProductionCompany> companies) {
         if (companies == null) return Collections.emptySet();
-        return companies.stream().map(c -> ProductionCompanyEntity.builder().id(c.getId()).name(c.getName()).logoPath(c.getLogoPath()).originCountry(c.getOriginCountry()).build()).collect(Collectors.toSet());
+        return companies.stream().map(c -> new ProductionCompanyEntity(c.getId(), c.getName())).collect(Collectors.toSet());
     }
     private Set<ProductionCompany> mapCompaniesToDomain(Set<ProductionCompanyEntity> entities) {
-         if (entities == null) return Collections.emptySet();
-        return entities.stream().map(e -> ProductionCompany.builder().id(e.getId()).name(e.getName()).logoPath(e.getLogoPath()).originCountry(e.getOriginCountry()).build()).collect(Collectors.toSet());
+        if (entities == null) return Collections.emptySet();
+        return entities.stream().map(e -> ProductionCompany.builder().id(e.getId()).name(e.getName()).build()).collect(Collectors.toSet());
     }
 
     private Set<SpokenLanguageEntity> mapLanguagesToEntity(Set<SpokenLanguage> languages) {
         if (languages == null) return Collections.emptySet();
-        return languages.stream().map(l -> SpokenLanguageEntity.builder().iso_639_1(l.getIso_639_1()).name(l.getName()).englishName(l.getEnglishName()).build()).collect(Collectors.toSet());
+        return languages.stream().map(l -> new SpokenLanguageEntity(l.getIso6391(), l.getName(), l.getEnglishName())).collect(Collectors.toSet());
     }
     private Set<SpokenLanguage> mapLanguagesToDomain(Set<SpokenLanguageEntity> entities) {
         if (entities == null) return Collections.emptySet();
-        return entities.stream().map(e -> SpokenLanguage.builder().iso_639_1(e.getIso_639_1()).name(e.getName()).englishName(e.getEnglishName()).build()).collect(Collectors.toSet());
+        return entities.stream().map(e -> SpokenLanguage.builder().iso6391(e.getIso6391()).name(e.getName()).englishName(e.getEnglishName()).build()).collect(Collectors.toSet());
     }
 
     private Set<ProductionCountryEntity> mapProdCountriesToEntity(Set<ProductionCountry> countries) {
         if (countries == null) return Collections.emptySet();
-        return countries.stream().map(c -> ProductionCountryEntity.builder().iso_3166_1(c.getIso_3166_1()).name(c.getName()).build()).collect(Collectors.toSet());
+        return countries.stream().map(c -> {
+            ProductionCountryEntity entity = new ProductionCountryEntity();
+            entity.setIso31661(c.getIso31661());
+            entity.setName(c.getName());
+            return entity;
+        }).collect(Collectors.toSet());
     }
     private Set<ProductionCountry> mapProdCountriesToDomain(Set<ProductionCountryEntity> entities) {
         if (entities == null) return Collections.emptySet();
-        return entities.stream().map(e -> ProductionCountry.builder().iso_3166_1(e.getIso_3166_1()).name(e.getName()).build()).collect(Collectors.toSet());
+        return entities.stream().map(e -> ProductionCountry.builder().iso31661(e.getIso31661()).name(e.getName()).build()).collect(Collectors.toSet());
     }
 
     private Set<OriginCountryEntity> mapOriginCountriesToEntity(Set<OriginCountry> countries) {
         if (countries == null) return Collections.emptySet();
-        return countries.stream().map(c -> OriginCountryEntity.builder().iso_3166_1(c.getIso_3166_1()).name(c.getName()).build()).collect(Collectors.toSet());
+        return countries.stream().map(c -> new OriginCountryEntity(c.getCode())).collect(Collectors.toSet());
     }
     private Set<OriginCountry> mapOriginCountriesToDomain(Set<OriginCountryEntity> entities) {
         if (entities == null) return Collections.emptySet();
-        return entities.stream().map(e -> OriginCountry.builder().iso_3166_1(e.getIso_3166_1()).name(e.getName()).build()).collect(Collectors.toSet());
+        return entities.stream().map(e -> OriginCountry.builder().code(e.getCode()).build()).collect(Collectors.toSet());
     }
-
 }
+
