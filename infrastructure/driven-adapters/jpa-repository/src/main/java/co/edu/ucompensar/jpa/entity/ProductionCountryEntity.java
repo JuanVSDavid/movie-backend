@@ -4,18 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.Data;
 
+@Data
 @Entity
-@Table(name = "genres")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class GenreEntity {
+@Table(name = "production_countries")
+public class ProductionCountryEntity {
+
     @Id
-    private Long id;
-    @Column
+    @Column(name = "iso_3166_1")
+    private String iso31661;
+
+    @Column(nullable = false)
     private String name;
 }

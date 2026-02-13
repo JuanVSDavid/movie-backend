@@ -3,14 +3,22 @@ package co.edu.ucompensar.model.movie.entity;
 import lombok.*;
 
 import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Builder
-@AllArgsConstructor
 public class Genre {
     private Long id;
     private String name;
+
+    @Builder
+    public Genre(Long id, String name) {
+        this.id = Objects.requireNonNull(id);
+        this.name = Objects.requireNonNull(name);
+    }
 
     @Override
     public boolean equals(Object o) {

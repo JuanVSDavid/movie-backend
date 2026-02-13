@@ -1,0 +1,19 @@
+package co.edu.ucompensar.api.model.response;
+
+import lombok.Builder;
+import lombok.Data;
+import java.time.LocalDate;
+import java.util.Set;
+
+@Data
+@Builder
+public class MovieResponse {
+    private Long id;
+    private String title;
+    private String overview;
+    private LocalDate releaseDate;
+
+    private Set<Long> genresId;
+    private Set<String> spokenLanguagesId;
+    private Set<String> originCountriesId;
+}

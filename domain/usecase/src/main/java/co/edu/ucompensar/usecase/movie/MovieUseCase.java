@@ -3,46 +3,49 @@ package co.edu.ucompensar.usecase.movie;
 import co.edu.ucompensar.model.common.Page;
 import co.edu.ucompensar.model.common.Pageable;
 import co.edu.ucompensar.model.movie.Movie;
-import co.edu.ucompensar.model.movie.entity.Genre;
 import co.edu.ucompensar.model.movie.gateways.MovieRepository;
-import co.edu.ucompensar.usecase.movie.command.CreateMovieCommand;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
-import java.util.stream.Collectors;
-
 @RequiredArgsConstructor
 public class MovieUseCase {
+
     private final MovieRepository movieRepository;
 
-    public Movie create(CreateMovieCommand command){
-        var movie = Movie
-                .builder()
-                .title(command.getTitle())
-                .genres(command.getGenresId().stream().map(id -> Genre.builder().id(id).build()).collect(Collectors.toSet()))
-                .build();
+    public Movie create(Movie movie) {
         return movieRepository.create(movie);
     }
 
-    public Page<Movie> getNowPlaying(Pageable pageable) {
-        return movieRepository.findNowPlaying(pageable);
+    public Movie modify(Long id, Movie movie) {
+        return movieRepository.modify(id, movie);
     }
 
-    public Page<Movie> getTopRated(Pageable pageable) {
-        return movieRepository.findTopRated(pageable);
+    public void deleteById(Long id) {
+        movieRepository.deleteById(id);
     }
 
-    public Page<Movie> getUpcoming(Pageable pageable) {
-        return movieRepository.findUpcoming(pageable);
-    }
-
-    public Page<Movie> getPopular(Pageable pageable) {
-        return movieRepository.findPopular(pageable);
-    }
-
-    public Optional<Movie> getMovieById(Long id) {
+    public Optional<Movie> findById(Long id) {
         return movieRepository.findById(id);
     }
 
+    public Page<Movie> findAll(Pageable pageable) {
+        return movieRepository.findAll(pageable);
+    }
+
+    public Page<Movie> findNowPlaying(Pageable pageable) {
+        return movieRepository.findNowPlaying(pageable);
+    }
+
+    public Page<Movie> findTopRated(Pageable pageable) {
+        return movieRepository.findTopRated(pageable);
+    }
+
+    public Page<Movie> findUpcoming(Pageable pageable) {
+        return movieRepository.findUpcoming(pageable);
+    }
+
+    public Page<Movie> findPopular(Pageable pageable) {
+        return movieRepository.findPopular(pageable);
+    }
 }
